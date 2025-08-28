@@ -16,13 +16,37 @@
 
 <body>
     <header>
-        <nav class="navbar">
-            <img class="nav-logo" src="assets/logo.png" alt="logo">
-            <div class="nav-btn">
-                <img class="heart" src="assets/heart.png" alt="heart">
-                <img class="coin" src="assets/coin.png" alt="coin">
+
+
+        <!-- navbar-section -->
+
+        <nav
+            class="navbar flex justify-between items-center  md:px-20  px-10 sm:px15 mx-auto py-10 flex-col sm:flex-row">
+            <div class="flex px-2 sm:px-5  gap-3 items-center">
+                <img class="w-10" src="assets/logo.png" alt="logo">
+            </div>
+            <div class="flex gap-5">
+                <div class="  py-2 sm:px-5 bg-[#41ff6b1a] rounded-full flex gap-1">
+                    <span id="heart-count">0</span>
+                    <img class="heart" src="assets/heart.png" alt="heart">
+                </div>
+                <div>
+                    <span id="coin-count">100</span>
+                    <img src="assets/coin.png" alt="coin">
+                </div>
+            </div>
+            <div>
+                <p>
+                    <span id="copy-count">0</span>
+                    "Copy"
+                </p>
             </div>
         </nav>
+
+
+        <!-- banner-section -->
+
+
         <section class="banner">
             <div class="banner-contant">
                 <img src="assets/logo-dark.png" alt="logo-dark">
@@ -31,6 +55,11 @@
                     of the People’s Republic of Bangladesh</p>
             </div>
         </section>
+
+
+        <!-- card-section -->
+
+
         <section>
             <div class="card-section">
                 <div class="card">
@@ -116,11 +145,16 @@
                 <button class="call-btn">Call</button>
             </div>
 
+
+            <!-- call-history-sectiopn -->
+
+
             <div class="call-history-section">
                 <div>
-                    <h3>Call History</h3>
-                    <h1>Clear</h1>
+                    <h1>Call History</h1>
+                    <button id="clear-btn">Clear</button>
                 </div>
+
             </div>
         </section>
     </header>
@@ -128,3 +162,4 @@
 </body>
 
 </html>
+
