@@ -1,127 +1,183 @@
 const sumNumber = 1;
 const queryBtn = document.querySelectorAll('.heart-btn');
 
-for (const query of queryBtn) {
-    query.addEventListener('click', function () {
-        const heard = document.getElementById('heartCount').innerText;
-        const parseHeard = parseInt(heard);
-        const sumHeader = parseHeard + sumNumber;
-        document.getElementById('heartCount').innerText = sumHeader;
+let count = 0;
+const countDisply = document.getElementById("counter");
+const hearts = document.getElementsByClassName("heart-counter");
+
+for (let heart of hearts) {
+    heart.addEventListener("click", function () {
+        count++;
+        countDisply.innerText = count;
     });
 }
 
+// copy 
 
+function copyAlert(id, alert) {
+    if (confirm(alert)) {
+        const he = document.getElementById(id).innerText;
+        navigator.clipboard.writeText(he)
 
-function copyAlert(idOrText, alertText) {
-    if (confirm(alertText)) {
-
-        const el = document.getElementById(idOrText);
-        const toCopy = el ? el.innerText : idOrText;
-        if (navigator && navigator.clipboard && navigator.clipboard.writeText) {
-            navigator.clipboard.writeText(toCopy);
-        }
     }
+
 }
 
+document.getElementById('emergencyNumber')
+    .addEventListener('click', function () {
+        copyAlert('titleNum', 'Number copied:999')
 
-const copyQueryBtn = document.querySelectorAll('.copy-btn');
+    });
+
+document.getElementById('policeHepline')
+    .addEventListener('click', function () {
+        copyAlert('titleNum', 'Number copied:999')
+
+    });
+document.getElementById('fireServie')
+    .addEventListener('click', function () {
+        copyAlert('titleNum', 'Number copied:999')
+
+    });
+document.getElementById('ambulanceService')
+    .addEventListener('click', function () {
+        copyAlert('ambulanceNum', 'Number copied:1994-999999')
+
+    });
+
+document.getElementById('womenChild')
+    .addEventListener('click', function () {
+        copyAlert('womenNum', 'Number copied:109')
+
+    });
+document.getElementById('antiHelp')
+    .addEventListener('click', function () {
+        copyAlert('antiNum', 'Number copied:106')
+
+    });
+document.getElementById('electricityHelp')
+    .addEventListener('click', function () {
+        copyAlert('electricityNum', 'Number copied:16216')
+
+    });
+document.getElementById('bracHelping')
+    .addEventListener('click', function () {
+        copyAlert('bracNum', 'Number copied:16445')
+
+    });
+document.getElementById('railwayBD')
+    .addEventListener('click', function () {
+        copyAlert('railwayNum', 'Number copied:163')
+
+    });
+
+
+
+const copyQueryBtn = document.querySelectorAll('.copyQuery');
 for (const totalCopyQuery of copyQueryBtn) {
     totalCopyQuery.addEventListener('click', function () {
-
-        let p = this;
-        while (p && !p.classList.contains('hotline-card')) {
-            p = p.parentElement;
-        }
-        if (!p) return;
-
-        const numberEl = p.querySelector('.hotline-number');
-        const numberText = numberEl ? numberEl.innerText.trim() : '';
-
-        copyAlert(numberText, 'Number copied: ' + numberText);
-
-        // copy-count 
-        const copyHeard = document.getElementById('copyCount').innerText;
+        const copyHeard = document.getElementById('copy-count').innerText;
         const parseCopy = parseInt(copyHeard);
         const sumCopy = parseCopy + sumNumber;
-        document.getElementById('copyCount').innerText = sumCopy;
-    });
+        document.getElementById('copy-count').innerText = sumCopy;
+    })
 }
 
 
 
-function getNowTime() {
-    return new Date().toLocaleTimeString();
+
+function collConfirm(id, name, sNum, confirmText) {
+    document.getElementById(id)
+        .addEventListener('click', function () {
+            const coin = parseInt(document.getElementById('coin-counter').innerText);
+
+            if (coin < 20) {
+                alert("Insufficient balance. Minimum 20 coins required ")
+                return
+            }
+            else if (confirm(confirmText)) {
+
+
+                const min = coin - minusCount;
+                document.getElementById('coin-counter').innerText = min;
+            }
+
+            const calldata = {
+                service: name,
+                serviceNum: sNum,
+                date: new Date().toLocaleTimeString()
+
+            }
+            collDataFile.push(calldata)
+
+
+            const historyContainer = document.getElementById('history-continer')
+
+            const div = document.createElement('div');
+
+            for (const collData of collDataFile) {
+                div.innerHTML = `
+                        <div class="bg-gray-200 p-5 rounded-md flex justify-between  items-center mb-3">
+                    <div>
+                        <h1 class="text-[23px] font-semibold">${collData.service}</h1>
+                        <p>${collData.serviceNum}</p>
+                    </div>
+                    <p>${collData.date}</p>
+                </div>
+                `
+            }
+            historyContainer.appendChild(div);
+
+        })
+
+
 }
 
-function buildHistoryItem(name, sNum, timeText) {
-    const li = document.createElement('li');
-    li.className = 'flex justify-between items-start border-b border-gray-200 py-3 last:border-b-0';
-
-    const left = document.createElement('div');
-    const h = document.createElement('p');
-    const p = document.createElement('p');
-
-    h.className = 'font-medium';
-    p.className = 'text-sm text-gray-500';
-
-    h.innerText = name;
-    p.innerText = sNum;
-
-    left.appendChild(h);
-    left.appendChild(p);
-
-    const right = document.createElement('div');
-    right.className = 'text-sm text-gray-500 whitespace-nowrap self-start';
-    right.innerText = timeText;
-
-    li.appendChild(left);
-    li.appendChild(right);
-    return li;
-}
 
 const collDataFile = [];
+
 const minusCount = 20;
 
-const callBtns = document.querySelectorAll('.call-btn');
-for (const btn of callBtns) {
-    btn.addEventListener('click', function () {
 
-        let p = this;
-        while (p && !p.classList.contains('hotline-card')) {
-            p = p.parentElement;
-        }
-        if (!p) return;
+const erName = document.getElementById('emergencyName').innerText;
+const enNum = document.getElementById('titleNum').innerText;
+collConfirm('emergencyCall', erName, enNum, 'Calling National Emergencty:999')
 
-        const name = p.querySelector('.service-name') ? p.querySelector('.service-name').innerText.trim() : '';
-        const sNum = p.querySelector('.hotline-number') ? p.querySelector('.hotline-number').innerText.trim() : '';
 
-        const cone = parseInt(document.getElementById('coinCount').innerText);
+const policeName = document.getElementById('pliceName').innerText;
+const policeNum = document.getElementById('titleNum').innerText;
+collConfirm('policeCall', policeName, policeNum, 'Calling Police Helpline Number:999')
 
-        if (cone < 20) {
-            alert("You don't have any money! 20 money to call.");
-            return;
-        } else if (confirm('Calling ' + name + ': ' + sNum)) {
-            const min = cone - minusCount;
-            document.getElementById('coinCount').innerText = min;
-        } else {
-            return;
-        }
+const fireSerName = document.getElementById('fireName').innerText;
+const fireNum = document.getElementById('titleNum').innerText;
+collConfirm('fireCallBtn', fireSerName, fireNum, 'Calling Fire Service Number:999')
 
-        const calldata = {
-            service: name,
-            serviceNum: sNum,
-            date: getNowTime()
-        };
-        collDataFile.push(calldata);
+const ambulanceNam = document.getElementById('ambulanceName').innerText;
+const ambulanceNumber = document.getElementById('ambulanceNum').innerText;
+collConfirm('ambulanceCallBtn', ambulanceNam, ambulanceNumber, 'Calling Ambulance Service Number:1994-999999')
 
-        const historyContainer = document.getElementById('historyList');
-        const item = buildHistoryItem(calldata.service, calldata.serviceNum, calldata.date);
-        historyContainer.appendChild(item);
-    });
-}
+const womenNam = document.getElementById('womenName').innerText;
+const womenNumber = document.getElementById('womenNum').innerText;
+collConfirm('womenCall', womenNam, womenNumber, 'Calling Women & Child Helpline Number:109')
+
+const antiName = document.getElementById('antiNam').innerText;
+collConfirm('antiCallBtn', antiName, 106, 'Calling Anti-Corruption Helpline Number:106')
+
+const electricityName = document.getElementById('electricity').innerText;
+collConfirm('electricitybtn', electricityName, 16216, 'Calling Electricity Helpline Number:116216')
+
+const bracName = document.getElementById('bracNam').innerText;
+collConfirm('bracCallBtn', bracName, 16445, 'Calling Brac Helpline Number:16445')
+
+const railwayName = document.getElementById('railwayNum').innerText;
+collConfirm('railwayCallBtn', railwayName, 163, 'Calling Bangladesh Railway Helpline Number:163')
+
 
 // history clear container 
-document.getElementById('clearHistoryBtn')
+
+
+document.getElementById('clearBtn')
     .addEventListener('click', function () {
-        document.getElementById('historyList').innerText = '';
-    });
+        document.getElementById('history-continer').innerText = ''
+            ;
+    })
