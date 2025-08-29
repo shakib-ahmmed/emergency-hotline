@@ -2,7 +2,7 @@ Answars:
 
 1. ans....
 
- getElimentById এটা দিয়ে একটা নির্দিষ্ট ID দিয়ে একটিমাত্র element রিটার্ন করে কারন ID ইউনিক থাকে তাই একটা element রিটার্ন করে আর তা না হলে null রিটার্ন করে।
+ getElimentById এটা দিয়ে একটা নির্দিষ্ট ID দিয়ে একটিমাত্র element রিটার্ন করে কারন ID ইউনিক হয় তাই এটা একটা element রিটার্ন করে আর তা না হলে null রিটার্ন করে।
 
 getElementByClassName এটা দিয়ে একি নামের সকল class কে একটি লাইভ HTMLCollection দেয় এবং যদি নতুন কোন element যোগ করা হয় তাহলে এটা নিজেথেকেই আপডেট হয়। 
 

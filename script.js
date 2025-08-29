@@ -12,7 +12,6 @@ for (let heart of hearts) {
     });
 }
 
-// copy 
 
 function copyAlert(id, alert) {
     if (confirm(alert)) {
@@ -173,7 +172,6 @@ const railwayName = document.getElementById('railwayNum').innerText;
 collConfirm('railwayCallBtn', railwayName, 163, 'Calling Bangladesh Railway Helpline Number:163')
 
 
-// history clear container 
 
 
 document.getElementById('clearBtn')
